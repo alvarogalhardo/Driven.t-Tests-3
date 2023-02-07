@@ -7,7 +7,8 @@ import { BookingSchema } from "@/protocols";
 export async function getBooking(req:AuthenticatedRequest,res:Response){
     const userId = req.userId;
     try{
-       
+       const booking = await bookingsService.getBooking(userId);
+       return res.status(200).send(booking)
     }catch(error){
         return res.sendStatus(httpStatus.NOT_FOUND)
     }

@@ -6,8 +6,9 @@ import { Router } from 'express';
 const bookingsRouter = Router();
 
 bookingsRouter
-    .all('/*', authenticateToken)
-    .get('/', getBooking)
-    .post('/', validateBody(bookingSchema), postBooking);
+    .all("/*", authenticateToken)
+    .get("/", getBooking)
+    .post("/", validateBody(bookingSchema), postBooking)
+    .put("/:bookingId")
 
 export default bookingsRouter;

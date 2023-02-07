@@ -20,9 +20,16 @@ async function postBooking(roomId:number,userId:number){
     return await bookingsRepository.postBooking(roomId,userId)
 }
 
+async function getBooking(userId:number){
+    const booking = await bookingsRepository.getBookingsOfUser(userId);
+    if(!booking) throw notFoundError();
+    return booking
+}
+
 const bookingsService = {
   validateBooking,
-  postBooking
+  postBooking,
+  getBooking
 };
 
 export default bookingsService;

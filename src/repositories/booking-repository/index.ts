@@ -42,6 +42,18 @@ async function postBooking(roomId: number, userId: number) {
   });
 }
 
-const bookingsRepository = { checkBookingValid, getRoomById, getBookingsOfRoom, postBooking };
+async function getBookingsOfUser(userId: number) {
+  return prisma.booking.findFirst({
+    where: {
+      userId,
+    },
+    select: {
+      Room: true,
+      id: true,
+    },
+  });
+}
+
+const bookingsRepository = { checkBookingValid, getRoomById, getBookingsOfRoom, postBooking, getBookingsOfUser };
 
 export default bookingsRepository;
