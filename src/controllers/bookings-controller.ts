@@ -2,7 +2,7 @@ import { AuthenticatedRequest } from '@/middlewares';
 import { Response } from 'express';
 import bookingsService from '@/services/bookings-service';
 import httpStatus from 'http-status';
-import { BookingSchema } from '@/protocols';
+import { BookingSchema, BookingResponse } from '@/protocols';
 
 export async function getBooking(req: AuthenticatedRequest, res: Response) {
   const userId = req.userId;
