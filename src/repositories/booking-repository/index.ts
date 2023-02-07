@@ -54,6 +54,25 @@ async function getBookingsOfUser(userId: number) {
   });
 }
 
-const bookingsRepository = { checkBookingValid, getRoomById, getBookingsOfRoom, postBooking, getBookingsOfUser };
+async function updateBooking(bookingId: number,roomId:number,userId:number) {
+  return prisma.booking.update({
+    where: {
+      id: bookingId,
+    },
+    data: {
+        roomId,
+        userId
+    },
+  });
+}
+
+const bookingsRepository = {
+  checkBookingValid,
+  getRoomById,
+  getBookingsOfRoom,
+  postBooking,
+  getBookingsOfUser,
+  updateBooking,
+};
 
 export default bookingsRepository;
