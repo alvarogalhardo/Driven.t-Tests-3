@@ -15,9 +15,11 @@ async function validateRoom(roomId: number) {
   const bookings = await bookingsRepository.getBookingsOfRoom(roomId);
   const room = await bookingsRepository.getRoomById(roomId);
   if (!room) throw notFoundError();
+  console.log(bookings.length >= room.capacity,'if expression');
   if (bookings.length >= room.capacity) {
     throw forbiddenError();
   }
+  
 }
 
 async function postBooking(roomId: number, userId: number): Promise<Booking> {
