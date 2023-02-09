@@ -244,12 +244,11 @@ describe('PUT /booking', () => {
       await createPayment(ticket.id, ticketType.price);
       const room = await createRoomWithHotelId(hotel.id);
       const room2 = await createRoomWithHotelId(hotel.id);
-      await createBooking(user.id, room.id);
-      
+      const booking = await createBooking(user.id, room.id);
       const response =
         await
           server
-            .put(`/booking/${room.id}`)
+            .put(`/booking/${booking.id}`)
             .set('Authorization', `Bearer ${token}`)
             .send({ roomId: room2.id });
       expect(response.statusCode).toBe(httpStatus.OK);
